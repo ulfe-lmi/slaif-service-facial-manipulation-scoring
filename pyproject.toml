@@ -24,6 +24,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["httpx>=0.27,<1", "pytest>=8,<9", "ruff>=0.5,<1"]
+evaluation = ["matplotlib>=3.8,<4"]
 
 [project.scripts]
 slaif-fms = "slaif_fms.cli:app"
@@ -33,6 +34,9 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+slaif_fms = ["resources/*.json"]
 
 [tool.pytest.ini_options]
 addopts = "-q"

@@ -63,6 +63,12 @@ class ScoringEngine:
         data = path.read_bytes()
         return self.score_bytes(data, filename=path.name)
 
+    def score_preprocessed_path(self, path: Path) -> ScoreResult:
+        """Score a crop already produced by the pinned author preprocessing."""
+        if not path.is_file():
+            raise FileNotFoundError(path)
+        return self.score_preprocessed_bytes(path.read_bytes(), filename=path.name)
+
     def score_bytes(self, data: bytes, *, filename: str | None = None) -> ScoreResult:
         if len(data) > self.settings.max_upload_bytes:
             raise InvalidImageError(
@@ -101,5 +107,31 @@ class ScoringEngine:
                 crop_box_xyxy=outcome.box_xyxy,
                 crop_width=crop_width,
                 crop_height=crop_height,
+            ),
+        )
+
+    def score_preprocessed_bytes(self, data: bytes, *, filename: str | None = None) -> ScoreResult:
+        if len(data) > self.settings.max_upload_bytes:
+            raise InvalidImageError(
+                f"Image exceeds the {self.settings.max_upload_bytes} byte upload limit."
+            )
+        if not self._ready:
+            self.load()
+        assert self._backend is not None
+        frame = decode_image(data, max_pixels=self.settings.max_image_pixels)
+        height, width = frame.shape[:2]
+        with self._lock:
+            score = self._backend.score(frame)
+        return ScoreResult(
+            status=ScoreStatus.SCORED,
+            score=score,
+            image=ImageMetadata(
+                filename=filename,
+                width=width,
+                height=height,
+                detected_faces=1,
+                crop_box_xyxy=(0, 0, width, height),
+                crop_width=width,
+                crop_height=height,
             ),
         )
