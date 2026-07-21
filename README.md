@@ -26,7 +26,38 @@ The repository contains no model checkpoint and no benchmark images. Dataset and
 
 ## Status
 
-The repository is under initial construction. The public contract and provenance are defined in this change; scorer, evaluation tools, and frozen evidence are introduced in the following stacked changes.
+The score service, CLI, and exact author preprocessing are implemented. Evaluation tooling and frozen evidence are introduced in the following stacked changes.
+
+## Quick Start
+
+Clone the pinned SelfMAD++ submodule, create a Python 3.10 environment, and install the CUDA dependencies:
+
+```bash
+git clone --recurse-submodules https://github.com/ulfe-lmi/slaif-service-facial-manipulation-scoring.git
+cd slaif-service-facial-manipulation-scoring
+python3.10 -m venv .venv
+. .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements/model-cu121.txt
+python -m pip install -e .
+python scripts/fetch_artifacts.py
+slaif-fms verify-artifacts
+```
+
+Bind the process to exactly one GPU and score an image. Author cropping is always applied by the command:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 slaif-fms score portrait.jpg
+```
+
+Run the API with one process per visible GPU:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 uvicorn slaif_fms.api:app --host 0.0.0.0 --port 8000 --workers 1
+curl -sS -F image=@portrait.jpg http://localhost:8000/v1/score
+```
+
+See [Installation and deployment](docs/installation.md) for artifact caching, Docker, two-GPU deployment, response schemas, and failure behavior.
 
 ## Service Contract
 
