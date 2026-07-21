@@ -209,6 +209,10 @@ tempCodeRunnerFile.py
 # PyPI configuration file
 .pypirc
 
+# External model artifacts and local evidence
+models/
+results/
+
 # Marimo
 marimo/_static/
 marimo/_lsp/
