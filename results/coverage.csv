@@ -1,0 +1,9 @@
+dataset,official_or_reference_total,locally_available,selected,scored,selection_percent_reference,scored_percent_reference,scored_percent_selected,selection
+STR-FFHQ-FM,3311,3310,3310,3288,99.969798,99.305346,99.335347,all locally available metadata rows
+READFake,2136,2136,2136,2135,100.0,99.953184,99.953184,all annotated archive rows
+CelebHQ-FM,14490,14490,14490,14454,100.0,99.751553,99.751553,all rows; original _orig images define bona fide
+FFHQR,140000,20000,4000,3991,2.857143,2.850714,99.775,balanced 20% of local ID slice 60000-69999
+PPR10K,44644,44644,44644,25910,100.0,58.03781,58.03781,all 11161 sources and three retouched targets per source
+MFFI,1024000,853739,42688,42374,4.16875,4.138086,99.264196,"5% of local pool, uniformly random and class-balanced"
+RetouchingFFHQ,739317,729281,50000,49939,6.763001,6.754749,99.878,proportional stratified sample of pairable archive rows
+FFHQ control,70000,69343,69343,69098,99.061429,98.711429,99.646684,all locally available official FFHQ images

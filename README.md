@@ -26,7 +26,7 @@ The repository contains no model checkpoint and no benchmark images. Dataset and
 
 ## Status
 
-The score service, CLI, exact author preprocessing, and evaluation/reference-profiling tools are implemented. Frozen benchmark evidence is introduced in the following stacked change.
+The MVP score service, CLI, exact author preprocessing, evaluation toolkit, reference profiler, and frozen benchmark report are implemented. The service remains research software and requires operators to validate behavior in their own domain.
 
 ## Quick Start
 
@@ -83,6 +83,25 @@ The reference implementation is pinned to:
 - upstream `utils/preprocessing/crop.py` blob SHA-256 `a9a5f667e9e85e8b7f6b255221e5855ddbcfbd7de3c8e23324fa967990922ad6`.
 
 See [Provenance](docs/provenance.md) for artifact links and verification rules and [Datasets](docs/datasets.md) for source pages, access conditions, evaluated scope, and redistribution status.
+
+## Frozen Benchmark Snapshot
+
+All values below use the author crop and fixed `1 = manipulated` score direction. EER is a conventional dataset statistic, not a service threshold.
+
+| Dataset | Bona fide n | Manipulated n | Bona fide mean | Manipulated mean | AUC | EER |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| STR-FFHQ-FM | 1,682 | 1,606 | 0.102 | 0.687 | 0.900 | 0.180 |
+| READFake | 716 | 1,419 | 0.200 | 0.475 | 0.688 | 0.373 |
+| CelebHQ-FM | 1,722 | 12,732 | 0.435 | 0.920 | 0.944 | 0.134 |
+| FFHQR | 1,994 | 1,997 | 0.095 | 0.123 | 0.598 | 0.429 |
+| PPR10K | 6,400 | 19,510 | 0.235 | 0.216 | 0.467 | 0.522 |
+| MFFI | 21,273 | 21,101 | 0.457 | 0.774 | 0.782 | 0.287 |
+| RetouchingFFHQ | 34,064 | 49,939 | 0.094 | 0.167 | 0.686 | 0.367 |
+| FFHQ control | 69,098 | - | 0.095 | - | - | - |
+
+The strongest ranking separation appears on CelebHQ-FM and STR-FFHQ-FM. MFFI shows useful but overlapping cross-domain separation. Professional/aesthetic retouching is weakly separated or not separated, depending on the dataset. This supports a narrow manipulation-indication score, not a claim to detect every edited image.
+
+See the [full frozen report](results/README.md), [service datasheet](docs/service-datasheet.md), exact coverage percentages, confidence intervals, ROC plots, histograms, ECDFs, operation tables, and publication notes.
 
 ## License and Citation
 

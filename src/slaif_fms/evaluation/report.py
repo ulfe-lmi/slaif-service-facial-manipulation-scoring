@@ -17,11 +17,13 @@ def evaluate_records(
     *,
     dataset: str,
     bootstrap_iterations: int = 1000,
+    display_name: str | None = None,
 ) -> dict[str, object]:
     if not records:
         raise ValueError("No score records supplied.")
     output_dir.mkdir(parents=True, exist_ok=True)
     prefix = output_dir / dataset
+    title_name = display_name or dataset
     labels, scores = records_arrays(records)
 
     summaries = []
@@ -34,7 +36,7 @@ def evaluate_records(
         list(summaries[0]),
         summaries,
     )
-    write_distribution_plots(records, prefix, f"{dataset}: SelfMAD++ score distributions")
+    write_distribution_plots(records, prefix, f"{title_name}: SelfMAD++ score distributions")
 
     metrics: dict[str, object] = {
         "dataset": dataset,
@@ -73,7 +75,7 @@ def evaluate_records(
             ["fpr", "tpr", "threshold"],
             point_rows,
         )
-        write_roc_plot(roc, prefix, f"{dataset}: manipulated versus bona fide")
+        write_roc_plot(roc, prefix, f"{title_name}: manipulated versus bona fide")
 
     (output_dir / f"{dataset}_metrics.json").write_text(
         json.dumps(metrics, indent=2, sort_keys=True) + "\n",

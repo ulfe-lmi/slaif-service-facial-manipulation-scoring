@@ -1,0 +1,9 @@
+dataset,images,groups,public
+str_ffhq_fm,4,overall,False
+readfake,4,overall,False
+celebhq_fm,4,overall,False
+ffhqr,4,overall,False
+ppr10k,4,overall,False
+mffi,4,overall,False
+ffhq,2,overall,False
+retouchingffhq,20,overall and operation,False

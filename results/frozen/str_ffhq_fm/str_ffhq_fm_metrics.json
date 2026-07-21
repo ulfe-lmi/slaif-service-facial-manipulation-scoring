@@ -1,0 +1,19 @@
+{
+  "auc": 0.9004102481331155,
+  "auc_ci95_high": 0.9110678242115255,
+  "auc_ci95_low": 0.8893924833005835,
+  "bootstrap_iterations": 1000,
+  "bootstrap_seed": 20260718,
+  "dataset": "str_ffhq_fm",
+  "eer": 0.18004643703827652,
+  "eer_ci95_high": 0.19251565547152993,
+  "eer_ci95_low": 0.16452679865782743,
+  "eer_threshold": 0.125793189,
+  "n": 3288,
+  "n_bona_fide": 1682,
+  "n_manipulated": 1606,
+  "positive_label": 1,
+  "positive_name": "manipulated",
+  "score": "SelfMAD++ class-1 softmax",
+  "score_direction": "higher_means_stronger_manipulation_indication"
+}
