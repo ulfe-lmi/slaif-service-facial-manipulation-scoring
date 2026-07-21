@@ -1,0 +1,4 @@
+interface:
+  display_name: "Install SLAIF FMS"
+  short_description: "Guide safe Linux GPU Docker installation"
+  default_prompt: "Use $install-slaif-fms to install and validate the SLAIF facial manipulation scoring API on this Linux host."
