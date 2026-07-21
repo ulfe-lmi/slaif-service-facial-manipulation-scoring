@@ -88,16 +88,18 @@ See [Provenance](docs/provenance.md) for artifact links and verification rules a
 
 All values below use the author crop and fixed `1 = manipulated` score direction. EER is a conventional dataset statistic, not a service threshold.
 
-| Dataset | Bona fide n | Manipulated n | Bona fide mean | Manipulated mean | AUC | EER |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| STR-FFHQ-FM | 1,682 | 1,606 | 0.102 | 0.687 | 0.900 | 0.180 |
-| READFake | 716 | 1,419 | 0.200 | 0.475 | 0.688 | 0.373 |
-| CelebHQ-FM | 1,722 | 12,732 | 0.435 | 0.920 | 0.944 | 0.134 |
-| FFHQR | 1,994 | 1,997 | 0.095 | 0.123 | 0.598 | 0.429 |
-| PPR10K | 6,400 | 19,510 | 0.235 | 0.216 | 0.467 | 0.522 |
-| MFFI | 21,273 | 21,101 | 0.457 | 0.774 | 0.782 | 0.287 |
-| RetouchingFFHQ | 34,064 | 49,939 | 0.094 | 0.167 | 0.686 | 0.367 |
-| FFHQ control | 69,098 | - | 0.095 | - | - | - |
+| Dataset | Dataset evaluated | Bona fide n | Manipulated n | Bona fide mean | Manipulated mean | AUC | EER |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| STR-FFHQ-FM | 99.31% | 1,682 | 1,606 | 0.102 | 0.687 | 0.900 | 0.180 |
+| READFake | 99.95% | 716 | 1,419 | 0.200 | 0.475 | 0.688 | 0.373 |
+| CelebHQ-FM | 99.75% | 1,722 | 12,732 | 0.435 | 0.920 | 0.944 | 0.134 |
+| FFHQR | 2.85% | 1,994 | 1,997 | 0.095 | 0.123 | 0.598 | 0.429 |
+| PPR10K | 58.04% | 6,400 | 19,510 | 0.235 | 0.216 | 0.467 | 0.522 |
+| MFFI | 4.14% | 21,273 | 21,101 | 0.457 | 0.774 | 0.782 | 0.287 |
+| RetouchingFFHQ | 6.75% | 34,064 | 49,939 | 0.094 | 0.167 | 0.686 | 0.367 |
+| FFHQ control | 98.71% | 69,098 | - | 0.095 | - | - | - |
+
+`Dataset evaluated` is the successfully scored share of the official or stated reference total. For RetouchingFFHQ, it is 49,939 scored retouched rows out of the supplied archive's 739,317 manifest rows; the 34,064 bona fide samples are unique matching FFHQ originals added as the comparison baseline. MFFI uses the paper's approximately 1.024 million samples as its denominator. FFHQR uses all 140,000 original and retouched class samples as its denominator.
 
 The strongest ranking separation appears on CelebHQ-FM and STR-FFHQ-FM. MFFI shows useful but overlapping cross-domain separation. Professional/aesthetic retouching is weakly separated or not separated, depending on the dataset. This supports a narrow manipulation-indication score, not a claim to detect every edited image.
 
