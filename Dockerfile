@@ -27,7 +27,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     HF_HOME=/cache/huggingface \
-    TORCH_HOME=/cache/torch
+    TORCH_HOME=/cache/torch \
+    MPLCONFIGDIR=/tmp/matplotlib
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libglib2.0-0 libgl1 python3.10 \

@@ -60,3 +60,22 @@ def test_no_face_is_unscorable_not_low_score() -> None:
     assert result.status is ScoreStatus.UNSCORABLE
     assert result.score is None
     assert result.reason == "no_face_detected"
+
+
+def test_preprocessed_scoring_does_not_apply_cropper() -> None:
+    class FailingCropper(FakeCropper):
+        def crop(self, frame_rgb: np.ndarray) -> CropOutcome:
+            raise AssertionError("cropper must not run")
+
+    class FullFrameBackend(FakeBackend):
+        def score(self, image_rgb: np.ndarray) -> float:
+            assert image_rgb.shape == (5, 6, 3)
+            return 0.25
+
+    engine = ScoringEngine(
+        settings(),
+        cropper=FailingCropper(),
+        backend=FullFrameBackend(),
+    )
+    result = engine.score_preprocessed_bytes(image_bytes())
+    assert result.score == 0.25

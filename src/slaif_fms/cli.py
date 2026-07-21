@@ -11,9 +11,11 @@ import typer
 
 from .artifacts import verify_model_artifacts
 from .config import Settings
+from .evaluation.cli import app as evaluation_app
 from .service import ScoringEngine
 
 app = typer.Typer(no_args_is_help=True, help="Score facial images with SelfMAD++.")
+app.add_typer(evaluation_app, name="evaluation")
 
 
 @app.command()

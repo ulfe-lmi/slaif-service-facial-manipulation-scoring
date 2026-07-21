@@ -26,7 +26,7 @@ The repository contains no model checkpoint and no benchmark images. Dataset and
 
 ## Status
 
-The score service, CLI, and exact author preprocessing are implemented. Evaluation tooling and frozen evidence are introduced in the following stacked changes.
+The score service, CLI, exact author preprocessing, and evaluation/reference-profiling tools are implemented. Frozen benchmark evidence is introduced in the following stacked change.
 
 ## Quick Start
 
@@ -58,6 +58,8 @@ curl -sS -F image=@portrait.jpg http://localhost:8000/v1/score
 ```
 
 See [Installation and deployment](docs/installation.md) for artifact caching, Docker, two-GPU deployment, response schemas, and failure behavior.
+
+For reproducible score tables, fixed-polarity metrics, customer reference profiling, and rights-aware exemplar galleries, see [Evaluation and reference profiling](docs/evaluation.md).
 
 ## Service Contract
 
