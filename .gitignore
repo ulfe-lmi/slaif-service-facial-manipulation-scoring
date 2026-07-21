@@ -212,6 +212,10 @@ tempCodeRunnerFile.py
 # External model artifacts. Curated benchmark results are tracked under results/.
 models/
 
+# Locally generated API credentials. Keep only the directory placeholder.
+secrets/*
+!secrets/.gitkeep
+
 # Marimo
 marimo/_static/
 marimo/_lsp/

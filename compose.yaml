@@ -7,8 +7,10 @@ services:
       CUDA_VISIBLE_DEVICES: "0"
       SLAIF_FMS_CHECKPOINT_PATH: /app/models/SelfMADpp_SMDD.tar
       SLAIF_FMS_LANDMARK_MODEL_PATH: /app/models/shape_predictor_81_face_landmarks.dat
+      SLAIF_FMS_API_KEY_FILE: /run/secrets/api_key
     volumes:
       - ./models:/app/models:ro
+      - ./secrets:/run/secrets:ro
       - model-cache:/cache
     deploy:
       resources:

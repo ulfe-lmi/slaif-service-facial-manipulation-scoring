@@ -3,6 +3,7 @@
 .venv
 models
 results
+secrets
 tests
 __pycache__
 *.pyc
