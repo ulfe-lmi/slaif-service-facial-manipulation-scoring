@@ -1,0 +1,3 @@
+[submodule "vendor/SelfMADpp"]
+	path = vendor/SelfMADpp
+	url = https://github.com/LeonTodorov/SelfMADpp.git

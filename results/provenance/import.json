@@ -1,0 +1,8 @@
+{
+  "bootstrap_iterations": 1000,
+  "eer_definition": "nearest_discrete_fpr_fnr_crossing",
+  "importer": "scripts/import_frozen_results.py",
+  "model_inference_run": false,
+  "positive_label": 1,
+  "source_root_not_published": true
+}

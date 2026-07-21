@@ -1,0 +1,22 @@
+services:
+  scorer:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      CUDA_VISIBLE_DEVICES: "0"
+      SLAIF_FMS_CHECKPOINT_PATH: /app/models/SelfMADpp_SMDD.tar
+      SLAIF_FMS_LANDMARK_MODEL_PATH: /app/models/shape_predictor_81_face_landmarks.dat
+    volumes:
+      - ./models:/app/models:ro
+      - model-cache:/cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  model-cache:

@@ -1,0 +1,19 @@
+{
+  "auc": 0.9442846232690145,
+  "auc_ci95_high": 0.9495034961794346,
+  "auc_ci95_low": 0.9389119430022224,
+  "bootstrap_iterations": 1000,
+  "bootstrap_seed": 20260718,
+  "dataset": "celebhq_fm",
+  "eer": 0.13354372805879666,
+  "eer_ci95_high": 0.1411286898440211,
+  "eer_ci95_low": 0.12402796090620796,
+  "eer_threshold": 0.831288159,
+  "n": 14454,
+  "n_bona_fide": 1722,
+  "n_manipulated": 12732,
+  "positive_label": 1,
+  "positive_name": "manipulated",
+  "score": "SelfMAD++ class-1 softmax",
+  "score_direction": "higher_means_stronger_manipulation_indication"
+}

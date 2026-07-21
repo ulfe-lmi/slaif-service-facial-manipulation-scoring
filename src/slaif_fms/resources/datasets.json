@@ -1,0 +1,59 @@
+{
+  "str_ffhq_fm": {
+    "display_name": "STR-FFHQ-FM",
+    "source_url": "https://stresearch.github.io/face-manipulation-datasets/",
+    "domain": "face_manipulation",
+    "identified_rows_public": false,
+    "images_public": false
+  },
+  "readfake": {
+    "display_name": "READFake",
+    "source_url": null,
+    "domain": "face_manipulation",
+    "identified_rows_public": false,
+    "images_public": false
+  },
+  "celebhq_fm": {
+    "display_name": "CelebHQ-FM",
+    "source_url": "https://stresearch.github.io/face-manipulation-datasets/",
+    "domain": "face_manipulation",
+    "identified_rows_public": false,
+    "images_public": false,
+    "bona_fide_definition": "original image (_orig), never EDIT_NAME=none output"
+  },
+  "ffhqr": {
+    "display_name": "FFHQR",
+    "source_url": "https://github.com/skylab-tech/ffhqr-dataset",
+    "domain": "retouching",
+    "identified_rows_public": true,
+    "images_public": "per_asset_license_verification_required"
+  },
+  "ppr10k": {
+    "display_name": "PPR10K",
+    "source_url": "https://github.com/csjliang/PPR10K",
+    "domain": "retouching",
+    "identified_rows_public": false,
+    "images_public": false
+  },
+  "mffi": {
+    "display_name": "MFFI",
+    "source_url": "https://github.com/inclusionConf/MFFI",
+    "domain": "face_forgery",
+    "identified_rows_public": false,
+    "images_public": false
+  },
+  "retouchingffhq": {
+    "display_name": "RetouchingFFHQ",
+    "source_url": "https://arxiv.org/abs/2307.10642",
+    "domain": "retouching",
+    "identified_rows_public": false,
+    "images_public": false
+  },
+  "ffhq": {
+    "display_name": "FFHQ",
+    "source_url": "https://github.com/NVlabs/ffhq-dataset",
+    "domain": "bona_fide_control",
+    "identified_rows_public": true,
+    "images_public": "per_asset_license_verification_required"
+  }
+}
