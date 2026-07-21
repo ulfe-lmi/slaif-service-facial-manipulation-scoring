@@ -40,8 +40,10 @@ RUN apt-get update \
 
 COPY --from=builder /opt/venv /opt/venv
 COPY --from=builder /app /app
+COPY --chmod=0755 scripts/docker_entrypoint.py /usr/local/bin/slaif-fms-entrypoint
 WORKDIR /app
-USER slaif
+USER root
 EXPOSE 8000
 
+ENTRYPOINT ["/usr/local/bin/slaif-fms-entrypoint"]
 CMD ["gunicorn", "slaif_fms.api:app", "--worker-class", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000", "--workers", "1", "--timeout", "300"]

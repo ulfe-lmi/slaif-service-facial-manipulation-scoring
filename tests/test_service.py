@@ -40,6 +40,7 @@ def settings() -> Settings:
         selfmadpp_root=Path("vendor/SelfMADpp"),
         checkpoint_path=Path("unused"),
         landmark_model_path=Path("unused"),
+        api_key_file=Path("tests/.missing-api-key"),
         verify_artifact_checksums=False,
         eager_load=False,
     )

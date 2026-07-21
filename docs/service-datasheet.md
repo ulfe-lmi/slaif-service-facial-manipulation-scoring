@@ -44,7 +44,7 @@ The confidence intervals characterize row resampling only. Related derivatives o
 
 ## Data and privacy
 
-The reference API is stateless and need not retain images. Operators remain responsible for authentication, TLS, access control, logging, retention, and legal basis. Uploaded image bytes must not be written to application logs.
+The reference API is stateless and need not retain images. It supports an optional API key for the scoring endpoint; operators remain responsible for enabling and distributing that key, TLS, broader access control, logging, retention, and legal basis. Uploaded image bytes and API keys must not be written to application logs.
 
 Datasets, score-row derivatives, and example images have separate terms. The repository contains no benchmark images. Full identified score rows are published only for FFHQ and FFHQR under explicit data notices; restricted or unclear datasets receive aggregate evidence only.
 

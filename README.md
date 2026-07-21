@@ -57,6 +57,18 @@ CUDA_VISIBLE_DEVICES=0 uvicorn slaif_fms.api:app --host 0.0.0.0 --port 8000 --wo
 curl -sS -F image=@portrait.jpg http://localhost:8000/v1/score
 ```
 
+Authentication is optional and disabled when `secrets/api_key` is absent. Generate a key before
+startup to protect scoring requests:
+
+```bash
+python scripts/generate_api_key.py
+curl -sS -H "X-API-Key: <generated-key>" \
+  -F image=@portrait.jpg http://localhost:8000/v1/score
+```
+
+The generator displays a new key once and stores it locally with owner-only permissions. Health,
+readiness, and API documentation endpoints do not require the key.
+
 See [Installation and deployment](docs/installation.md) for artifact caching, Docker, two-GPU deployment, response schemas, and failure behavior.
 
 For reproducible score tables, fixed-polarity metrics, customer reference profiling, and rights-aware exemplar galleries, see [Evaluation and reference profiling](docs/evaluation.md).
