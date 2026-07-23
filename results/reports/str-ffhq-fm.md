@@ -10,7 +10,7 @@ All 3,310 locally available metadata rows were attempted against an expected 3,3
 | ---: | ---: | ---: | ---: |
 | 0.102 | 0.687 | 0.900 (0.889-0.911) | 0.180 (0.165-0.193) |
 
-Manipulated images generally score higher, with strong ranking separation and overlapping tails. This is one of the strongest evaluated domains and is reasonably close to the model's original morph/manipulation purpose.
+Manipulated images generally receive higher bona fide deviation scores, with strong ranking separation and overlapping tails. This is one of the strongest evaluated domains, but it does not establish comparable behavior for other manipulation methods or acquisition pipelines.
 
 [Histogram](../frozen/str_ffhq_fm/str_ffhq_fm_histogram.png) | [ROC](../frozen/str_ffhq_fm/str_ffhq_fm_roc.png) | [Metrics](../frozen/str_ffhq_fm/str_ffhq_fm_metrics.json)
 

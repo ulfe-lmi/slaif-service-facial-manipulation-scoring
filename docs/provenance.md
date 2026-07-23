@@ -13,7 +13,9 @@ The repository does not redistribute either model file. Installation verifies ex
 
 ## Score definition
 
-SelfMAD++ uses label `0` for bona fide and label `1` for morph. The exported score is the class-1 softmax value. Its direction is fixed before evaluating any dataset: higher means stronger model indication of manipulation. Evaluation must never reverse score polarity per dataset to improve an EER or AUC.
+SelfMAD++ uses label `0` for bona fide and label `1` for morph. The exported score is the class-1 softmax value. The service does not invert or transform it: product-facing documentation uses the same scalar as a bona fide deviation score, where higher means lower compatibility with the model's learned bona fide side of its decision boundary.
+
+The original morph label documents how the backend was trained; it neither limits the service to morph detection nor establishes coverage of all manipulations. Score direction is fixed before evaluating any dataset, and evaluation must never reverse polarity per dataset to improve an EER or AUC.
 
 ## Evaluation environment
 

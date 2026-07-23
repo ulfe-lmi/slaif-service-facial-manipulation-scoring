@@ -10,6 +10,8 @@ Evaluation consumes CSV with one scored image per row. Required concepts are:
 | label | `label`, `label_id`, or `target_label` | `0` bona fide, `1` manipulated |
 | score | `score` or `prob_morph` | SelfMAD++ class-1 softmax |
 
+The service uses this unchanged scalar as a bona fide deviation score: higher values indicate lower bona fide compatibility. `prob_morph` remains an accepted legacy/native input-column name for reproducibility; it does not limit the service framing to face morphs. Scores are never inverted for product presentation or per-dataset evaluation.
+
 Optional grouping columns include `operation`, `provider`, `operation_count`, `operation_level`, `method`, and `category`. Local `path` is used only to generate a local exemplar gallery and must never be published.
 
 Rows marked `unscorable` or `error` are excluded from score metrics and must be reported separately as preprocessing/scoring failures. They must never be converted into zero scores.
@@ -36,7 +38,7 @@ slaif-fms evaluation sample-balanced full_manifest.csv \
   --output sample.csv --fraction 0.05 --seed 20260718
 ```
 
-## User reference distribution
+## Bona fide reference profiling
 
 After scoring representative untouched images with the same model and preprocessing:
 
@@ -46,7 +48,7 @@ slaif-fms evaluation profile-reference untouched_scores.csv \
   --percentiles 0.95,0.99,0.999
 ```
 
-This reports empirical percentiles and distributions. It does not calibrate the score into a probability, estimate attack recall, recommend a threshold, or guarantee future false-positive rates.
+This reports empirical percentiles and distributions for the user's bona fide acquisition domain. Lower scores are more compatible and higher scores are less compatible with the model's learned bona fide side of its decision boundary. The profile does not calibrate the score into a probability, establish that an image is bona fide, estimate attack recall, recommend a threshold, or guarantee future false-positive rates.
 
 ## Exemplars and publication
 
