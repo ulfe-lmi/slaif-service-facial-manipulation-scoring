@@ -4,7 +4,7 @@
 
 These results were scored on 18-20 July 2026 and imported on 21 July 2026. Every image used the pinned SelfMAD++ author `crop.py` procedure: dlib frontal-face detection, the largest face by 81-landmark bounding-box area, a 12.5% margin, and the model's 512 by 512 resize. There was no FFHQ alignment, similarity warp, or morph-template normalization.
 
-The score is the fixed SelfMAD++ class-1 softmax output: `0 = bona fide`, `1 = manipulated`. Polarity was never selected per dataset. No model inference was run while creating this report; plots and tables were regenerated from frozen score CSVs whose SHA-256 values are recorded in [`provenance/source_artifacts.csv`](provenance/source_artifacts.csv).
+The score is the fixed SelfMAD++ class-1 softmax output: `0 = bona fide`, `1 = manipulated`. Benchmark reporting retains those native class labels and polarity was never selected per dataset. The service uses the same unchanged scalar as a bona fide deviation score, where higher values indicate lower bona fide compatibility. No model inference was run while creating this report; plots and tables were regenerated from frozen score CSVs whose SHA-256 values are recorded in [`provenance/source_artifacts.csv`](provenance/source_artifacts.csv).
 
 ## Headline results
 
@@ -87,7 +87,7 @@ SVG versions, ECDF plots, histogram bins, and ROC points are beside each linked 
 
 ## Responsible conclusion
 
-SelfMAD++ transfers beyond its original morph-detection purpose, especially on STR-FFHQ-FM, CelebHQ-FM, and MFFI. It is not a general edit detector: FFHQR and PPR10K show little or reversed separation for professional/aesthetic retouching, while RetouchingFFHQ varies markedly by operation. The evidence supports publishing a continuous manipulation-indication score with dataset-specific characterization. It does not support a universal threshold, automatic rejection, or an individual-image authenticity claim.
+The score separates several manipulated-image classes from their corresponding bona fide distributions, especially on STR-FFHQ-FM, CelebHQ-FM, and MFFI. It is not a general edit detector: FFHQR and PPR10K show little or reversed separation for professional and aesthetic retouching, while RetouchingFFHQ varies markedly by operation. The evidence supports publishing a continuous, domain-characterized bona fide compatibility signal. It does not support a universal threshold, automatic rejection, manipulation-type identification, or an individual-image authenticity claim.
 
 ## Examples and data rights
 

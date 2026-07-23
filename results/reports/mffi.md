@@ -10,7 +10,7 @@ The locally available pool contained 853,739 images, 83.37% of the paper's appro
 | ---: | ---: | ---: | ---: |
 | 0.457 | 0.774 | 0.782 (0.778-0.787) | 0.287 (0.283-0.292) |
 
-MFFI is the broadest and most difficult forgery domain in this report. A morph-oriented detector retains useful ranking information, but both classes contain many high scores and overlap heavily. This supports SelfMAD++ as an off-label specialist signal, not a general forgery verdict.
+MFFI is the broadest and most difficult forgery domain in this report. Many manipulated images receive elevated bona fide deviation scores, but both classes contain many high scores and overlap heavily. This supports a domain-dependent bona fide compatibility signal, not a general forgery verdict.
 
 [Histogram](../frozen/mffi/mffi_histogram.png) | [ROC](../frozen/mffi/mffi_roc.png) | [Metrics](../frozen/mffi/mffi_metrics.json)
 

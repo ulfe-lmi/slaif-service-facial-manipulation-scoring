@@ -10,7 +10,7 @@ FFHQR contains 70,000 original/retouched pairs, or 140,000 class samples. The lo
 | ---: | ---: | ---: | ---: |
 | 0.095 | 0.123 | 0.598 (0.579-0.615) | 0.429 (0.413-0.444) |
 
-Professional portrait retouching causes little systematic score elevation. This is compatible with a morph-oriented model that responds to some identity/manipulation artifacts but not ordinary professional retouching. It does not prove that an individual retouched image will score low.
+Professional portrait retouching causes little systematic score elevation, so most retouched samples remain close to the dataset's bona fide score distribution. The deviation score does not systematically distinguish this ordinary professional-retouching domain. This does not prove that an individual retouched image will score low or is bona fide.
 
 [Histogram](../frozen/ffhqr/ffhqr_histogram.png) | [ROC](../frozen/ffhqr/ffhqr_roc.png) | [Metrics](../frozen/ffhqr/ffhqr_metrics.json)
 

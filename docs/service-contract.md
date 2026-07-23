@@ -2,19 +2,21 @@
 
 ## Output semantics
 
-The service exposes the SelfMAD++ class-1 softmax output as an `uncalibrated_model_score`. A higher value means stronger similarity to patterns the fixed model associates with its morph/manipulation class. The value is bounded to `[0, 1]` by softmax, but it is not a calibrated probability.
+The service exposes the unchanged SelfMAD++ class-1 softmax output as an `uncalibrated_model_score`. Operationally, this is used as a bona fide deviation score: lower values indicate greater compatibility and higher values indicate lower compatibility with the fixed model's learned bona fide side of its decision boundary. The value is bounded to `[0, 1]` by softmax, but it is not a calibrated probability or a general geometric distance from all possible bona fide images.
 
-The score has no universal decision boundary. Dataset ROC curves and distribution summaries characterize aggregate behavior only. They do not establish that a particular image is genuine or manipulated.
+The score has no universal decision boundary. Dataset ROC curves and distribution summaries characterize aggregate behavior only. They do not establish that a particular image is bona fide or manipulated.
 
 ## Intended use
 
-The service is intended as a specialist facial-image signal that another system may inspect, combine, calibrate, or ignore. A user can score representative untouched images from its own acquisition process, examine the empirical distribution, and independently define an operating policy.
+The service is intended as a specialist bona fide compatibility signal that another system may inspect, combine, calibrate, or ignore. A user can score representative bona fide images from its own acquisition process, examine the empirical distribution, and independently define an operating policy.
 
 This repository does not determine whether such a policy is suitable. A threshold chosen from a reference distribution describes that reference distribution; it does not by itself establish manipulation recall, future false-positive rates, fairness, or validity under domain shift.
 
 ## Out of scope
 
 - hard authenticity or fraud decisions;
+- determining that an individual image is bona fide or manipulated;
+- identifying a manipulation type, method, or generator;
 - identity matching or biometric verification;
 - full identity-document authentication;
 - document field, template, portrait-replacement, or security-feature analysis;

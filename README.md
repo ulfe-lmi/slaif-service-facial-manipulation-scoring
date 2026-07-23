@@ -4,15 +4,17 @@
   </a>
 </div>
 
-# SLAIF Facial Manipulation Scoring
+# SLAIF Bona Fide Compatibility Scoring for Facial Images
 
 [![CI](https://github.com/ulfe-lmi/slaif-service-facial-manipulation-scoring/actions/workflows/ci.yml/badge.svg)](https://github.com/ulfe-lmi/slaif-service-facial-manipulation-scoring/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/ulfe-lmi/slaif-service-facial-manipulation-scoring/actions/workflows/codeql.yml/badge.svg)](https://github.com/ulfe-lmi/slaif-service-facial-manipulation-scoring/actions/workflows/codeql.yml)
 
-SLAIF Facial Manipulation Scoring is a reproducible service wrapper and evaluation suite for [SelfMAD++](https://github.com/LeonTodorov/SelfMADpp), a single-image morphing attack detector developed at the University of Ljubljana. It accepts a facial image and returns the model's continuous class-1 score after the preprocessing prescribed by the model authors.
+SLAIF Bona Fide Compatibility Scoring for Facial Images is a reproducible service wrapper and evaluation suite that returns a continuous, uncalibrated score for a facial image. Higher values indicate lower compatibility with the model's learned bona fide side of its decision boundary.
+
+The initial scoring backend is [SelfMAD++](https://github.com/LeonTodorov/SelfMADpp), originally developed at the University of Ljubljana for single-image morphing attack detection. The service exposes its class-1 score unchanged after the preprocessing prescribed by the model authors; the model's original task is technical provenance, not a claim that this service detects only face morphs or detects every manipulation.
 
 > [!IMPORTANT]
-> The score is an **uncalibrated model output**, not the probability that an image is manipulated and not an authenticity decision. This project does not prescribe a threshold. Performance depends on the image domain and manipulation family; published benchmark behavior does not establish correctness for an individual image.
+> The score is an **uncalibrated model output**, not the probability that an image is bona fide or manipulated and not an authenticity decision. It does not identify a manipulation type. This project does not prescribe a threshold. Performance depends on the image domain and acquisition process; published benchmark behavior does not establish correctness for an individual image.
 
 The project provides:
 
@@ -75,9 +77,10 @@ For reproducible score tables, fixed-polarity metrics, customer reference profil
 
 ## Service Contract
 
-Higher scores mean that SelfMAD++ found stronger evidence for the model's learned morph/manipulation class. The service:
+The unchanged SelfMAD++ output is used as a bona fide deviation score: higher values mean lower compatibility with the model's learned bona fide side of its decision boundary. The service:
 
 - does not classify an image as authentic or manipulated;
+- does not identify a manipulation type or generator;
 - does not enforce or recommend a threshold;
 - does not authenticate a person or an identity document;
 - does not detect arbitrary document edits or every form of image manipulation;
@@ -113,7 +116,7 @@ All values below use the author crop and fixed `1 = manipulated` score direction
 
 `Dataset evaluated` is the successfully scored share of the official or stated reference total. For RetouchingFFHQ, it is 49,939 scored retouched rows out of the supplied archive's 739,317 manifest rows; the 34,064 bona fide samples are unique matching FFHQ originals added as the comparison baseline. MFFI uses the paper's approximately 1.024 million samples as its denominator. FFHQR uses all 140,000 original and retouched class samples as its denominator.
 
-The strongest ranking separation appears on CelebHQ-FM and STR-FFHQ-FM. MFFI shows useful but overlapping cross-domain separation. Professional/aesthetic retouching is weakly separated or not separated, depending on the dataset. This supports a narrow manipulation-indication score, not a claim to detect every edited image.
+The strongest separation from the corresponding bona fide score distributions appears on CelebHQ-FM and STR-FFHQ-FM. MFFI shows useful but overlapping cross-domain separation. Professional and aesthetic retouching often remains close to the bona fide score distribution. This supports domain-characterized bona fide compatibility scoring, not a claim to detect or categorize every edited image.
 
 See the [full frozen report](results/README.md), [service datasheet](docs/service-datasheet.md), exact coverage percentages, confidence intervals, ROC plots, histograms, ECDFs, operation tables, and publication notes.
 
